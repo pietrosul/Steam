@@ -1,0 +1,573 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Motiva Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+/* Scroll bar customization */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1b2838;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3d6c8d;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #66c0f4;
+}
+
+body {
+    background-color: #181A21;
+    background-image: url('https://store.akamai.steamstatic.com/public/shared/images/joinsteam/acct_creation_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    position: relative;
+    flex-direction: column;
+    padding: 60px 0;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 920px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.steam-logo {
+    width: 215px;
+    height: 55px;
+    background-image: url('https://store.cloudflare.steamstatic.com/public/shared/images/header/logo_steam.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 26px;
+    align-self: flex-start;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.page-title {
+    color: #fff;
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 38px;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    align-self: flex-start;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.login-box {
+    background-color: #181A21;
+    border-radius: 4px;
+    padding: 0;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    border: 1px solid #272B35;
+}
+
+.close-button {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    color: #8F98A0;
+    border-radius: 50%;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.close-button:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+.login-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.login-form-container > *, .qr-container > * {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Separator line between form and QR code */
+.login-content::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 58%;
+    width: 1px;
+    background-color: #2A2E33;
+    transform: translateX(-12px);
+}
+
+.login-form-container {
+    width: 58%;
+    padding: 38px;
+    position: relative;
+}
+
+.login-header, .qr-header {
+    color: #1999ff;
+    font-size: 15px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.input-label {
+    color: #8f98a0;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-top: 26px;
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.input-group {
+    margin-bottom: 0;
+    width: 100%;
+    position: relative;
+}
+
+.input-focus {
+    /* Add a subtle glow effect when input is focused */
+    box-shadow: 0 0 10px rgba(25, 153, 255, 0.15);
+}
+
+/* Animated blue line for input focus */
+.input-group::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #1999ff;
+    transition: width 0.3s ease;
+}
+
+.input-group:focus-within::after {
+    width: 100%;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 14px 18px;
+    background-color: #32353C;
+    border: 1px solid #32353C;
+    border-radius: 2px;
+    font-size: 18px;
+    color: #ffffff;
+    height: 52px;
+    font-weight: normal;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"].has-content,
+input[type="password"].has-content {
+    border-color: #3e4c6b;
+    background-color: #3D4249;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover {
+    background-color: #3D4249;
+    border-color: #3D4249;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #1999ff;
+    box-shadow: 0 0 5px rgba(25, 153, 255, 0.2);
+    background-color: #3D4249;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #8F98A0;
+    font-weight: 300;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin: 24px 0;
+    color: #afafaf;
+}
+
+.remember-me label {
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 300;
+    letter-spacing: 0;
+    color: #afafaf;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.remember-me label:hover {
+    color: #ffffff;
+}
+
+.remember-me input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    display: inline-block;
+    margin-right: 12px;
+    position: relative;
+    width: 22px;
+    height: 22px;
+    background-color: #32353C;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.remember-me label:hover .checkmark {
+    background-color: #3D4249;
+}
+
+.remember-me input:checked ~ .checkmark {
+    background-color: #1999ff;
+}
+
+.remember-me input:checked ~ .checkmark:after {
+    content: "✓";
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    top: 2px;
+    left: 5px;
+}
+
+#login-btn {
+    width: 100%;
+    padding: 0;
+    background-color: #1999ff;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    height: 52px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    margin-top: 16px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+#login-btn:hover {
+    background-color: #3aabff;
+    box-shadow: 0 0 8px rgba(58, 171, 255, 0.4);
+}
+
+#login-btn:active {
+    transform: scale(0.98);
+    background-color: #0d86e3;
+}
+
+/* Button ripple effect */
+#login-btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+#login-btn:focus:not(:active)::after {
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+.help-link {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.help-link a {
+    color: #afafaf;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 300;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+.help-link a:hover {
+    color: #ffffff;
+    text-decoration: none;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.steam-guard-info {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    padding: 16px;
+    background-color: rgba(35, 43, 61, 0.6);
+    border-radius: 2px;
+    border: 1px solid #2A3752;
+}
+
+.steam-guard-icon {
+    width: 22px;
+    height: 22px;
+    background-image: url('https://store.cloudflare.steamstatic.com/public/shared/images/login/steam_guard_icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.steam-guard-info p {
+    color: #b8c3d2;
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+    font-weight: 300;
+}
+
+.qr-container {
+    width: 42%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 38px 32px;
+    text-align: center;
+}
+
+.qr-code {
+    background-color: #ffffff;
+    border-radius: 3px;
+    padding: 12px;
+    margin: 18px 0 18px 0;
+    width: 210px;
+    height: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.qr-code:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.qr-code img {
+    width: 186px;
+    height: 186px;
+    display: block;
+}
+
+.qr-help {
+    color: #8f98a0;
+    font-size: 15px;
+    margin-top: 16px;
+    line-height: 1.5;
+    width: 100%;
+    font-weight: 300;
+    text-align: center;
+}
+
+.steam-app-link {
+    color: #1999ff;
+    text-decoration: none;
+    font-weight: normal;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+.steam-app-link:hover {
+    color: #ffffff;
+    text-decoration: none;
+    text-shadow: 0 0 5px rgba(25, 153, 255, 0.5);
+}
+
+#message {
+    margin-top: 24px;
+    padding: 18px;
+    border-radius: 3px;
+    text-align: center;
+    display: none;
+    font-weight: normal;
+    width: 100%;
+    transition: opacity 0.3s ease;
+    font-size: 16px;
+}
+
+.success {
+    background-color: #1a3450;
+    color: #66c0f4;
+    border: 1px solid #244e6e;
+    box-shadow: 0 0 10px rgba(102, 192, 244, 0.2);
+}
+
+.error {
+    background-color: #402222;
+    color: #ff9696;
+    border: 1px solid #5e3535;
+    box-shadow: 0 0 10px rgba(255, 150, 150, 0.2);
+}
+
+.footer {
+    margin-top: 50px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    animation: fadeIn 0.5s ease-out 0.5s forwards;
+    opacity: 0;
+}
+
+.valve-logo {
+    width: 100px;
+    height: 28px;
+    background-image: url('https://store.akamai.steamstatic.com/public/images/v6/logo_valve_footer.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 14px;
+}
+
+.footer-text {
+    color: #8F98A0;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+    max-width: 570px;
+}
+
+/* Add animations to the style.css file */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(10px); }
+}
+
+.shake {
+    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.fade-out {
+    animation: fadeOut 0.3s forwards;
+}
+
+/* Loading animation for the message */
+@keyframes loadingPulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+#message.loading {
+    animation: loadingPulse 1.5s infinite;
+    background-color: #1a3450;
+    color: #66c0f4;
+    border: 1px solid #244e6e;
+}
+
+/* Full-width mobile optimization */
+@media (max-width: 768px) {
+    .login-content {
+        flex-direction: column;
+    }
+    
+    .login-content::after {
+        display: none;
+    }
+    
+    .login-form-container, .qr-container {
+        width: 100%;
+    }
+    
+    .login-box {
+        max-width: 450px;
+    }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        background-image: url('https://store.akamai.steamstatic.com/public/shared/images/joinsteam/acct_creation_bg_hd.jpg');
+    }
+} 

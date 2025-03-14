@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | Steam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/motiva-sans" rel="stylesheet">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/motiva-sans');
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://store.akamai.steamstatic.com/public/shared/images/responsive/share_steam_logo.png" type="image/png">
+</head>
+<body>
+    <div class="login-container">
+        <div class="steam-logo"></div>
+        <h1 class="page-title">Sign In</h1>
+        
+        <div class="login-box">
+            <div class="login-content">
+                <div class="login-form-container">
+                    <div class="login-header">SIGN IN WITH ACCOUNT NAME</div>
+                    <form id="loginForm">
+                        <div class="input-group">
+                            <input type="text" id="username" placeholder=" " required autocomplete="off" spellcheck="false">
+                        </div>
+                        
+                        <div class="input-label">PASSWORD</div>
+                        
+                        <div class="input-group">
+                            <input type="password" id="password" placeholder=" " required autocomplete="off">
+                        </div>
+                        
+                        <div class="remember-me">
+                            <label>
+                                <input type="checkbox" id="remember" checked>
+                                <span class="checkmark"></span>
+                                Remember me
+                            </label>
+                        </div>
+                        
+                        <button type="submit" id="login-btn">SIGN IN</button>
+                    </form>
+                    
+                    <div class="help-link">
+                        <a href="#">Help, I can't sign in</a>
+                    </div>
+                </div>
+                
+                <div class="qr-container">
+                    <div class="qr-header">OR SIGN IN WITH QR</div>
+                    <div class="qr-code">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=186x186&data=https://steamcommunity.com/login" alt="QR Code">
+                    </div>
+                    <div class="qr-help">
+                        Use the <a href="#" class="steam-app-link">Steam Mobile app</a> to sign in via QR code
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="message"></div>
+        
+        <div class="footer">
+            <div class="valve-logo"></div>
+            <div class="footer-text">
+                © Valve Corporation. All rights reserved. All trademarks are property of their respective owners in the US and other countries.
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
